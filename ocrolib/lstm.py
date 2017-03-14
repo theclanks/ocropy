@@ -29,7 +29,7 @@ from __future__ import print_function
 import common as ocrolib
 from numpy import (amax, amin, argmax, arange, array, clip, concatenate, dot,
                    exp, isnan, log, maximum, mean, nan, ones, outer, roll, sum,
-                   tanh, tile, vstack, zeros)
+                   tanh, tile, vstack, zeros, float128)
 from pylab import (clf, cm, figure, ginput, imshow, newaxis, rand, subplot,
                    where)
 from collections import defaultdict
@@ -380,7 +380,7 @@ class MLP(Network):
 
 def ffunc(x):
     "Nonlinearity used for gates."
-    return 1.0/(1.0+exp(-x))
+    return 1.0/(1.0+exp(float128(-x)))
 def fprime(x,y=None):
     "Derivative of nonlinearity used for gates."
     if y is None: y = sigmoid(x)
